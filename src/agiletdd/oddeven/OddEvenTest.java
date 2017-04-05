@@ -12,20 +12,15 @@ import org.junit.Test;
 public class OddEvenTest {
 
 	private OddEven oddEven;
-	private List<Integer> primeNumbers;
 	
 	@Before
 	public void setUp() throws Exception {
-		
-		primeNumbers = asList(1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97);
+
 		oddEven = new OddEven();
 		
 	}
 
-	@Test(expected = RuntimeException.class)
-	public void throw_exception_when_try_to_print_a_number_greater_than_100() {
-		 oddEven.print(101);
-	}
+	
 	
 	@Test
 	public void should_return_prime_when_print_1() {
@@ -80,6 +75,12 @@ public class OddEvenTest {
 		assertEquals("ODD", oddEven.print(9));
 	}
 	
+	@Test(expected = RuntimeException.class)
+	@Ignore
+	public void throw_exception_when_try_to_print_a_number_greater_than_100() {
+		 oddEven.print(101);
+	}
+	
 	@Test
 	@Ignore
 	public void should_return_prime_when_print_11() {
@@ -97,11 +98,13 @@ public class OddEvenTest {
 	@Test
 	@Ignore
 	public void should_return_odd_when_print_an_odd_number_and_is_not_prime() {
+		List<Integer> primeNumbers = asList(1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97);
+		
 		for(int number = 1; number <= 100 ; number += 2){
 			if(primeNumbers.contains(number)){
 				continue;
 			}
-				System.out.println(number);
+		
 			assertEquals("ODD", oddEven.print(number));
 		}
 	}
@@ -109,6 +112,8 @@ public class OddEvenTest {
 	@Test
 	@Ignore
 	public void should_return_prime_when_print_a_prime_number() {
+		List<Integer> primeNumbers = asList(1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97);
+		
 		for(int index = 0; index < primeNumbers.size() ; index++){
 			assertEquals("PRIME", oddEven.print(primeNumbers.get(index)));
 		}
