@@ -6,17 +6,15 @@ import java.util.List;
 public class InMemoryUserRepository implements UserRepository {
 
 	private final List<User> users = new ArrayList();
-	
+
 	@Override
 	public User findByName(String name) {
-		return users.stream()
-				.filter(user -> user.getName().equals(name))
-				.findFirst()
-				.orElse(null);
+		return users.stream().filter(user -> user.getName().equals(name)).findFirst().orElse(null);
 	}
 
 	@Override
 	public void persist(User user) {
+		users.removeIf(userNode -> userNode.getId() == user.getId());
 		users.add(user);
 	}
 
